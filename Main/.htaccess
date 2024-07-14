@@ -1,0 +1,16 @@
+
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+php_value error_log logs/all_errors.log
+php_flag display_startup_errors on
+php_flag display_errors on
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:delegate.jnisiyc.com
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} (www\.)?delegate.jnisiyc.com
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:delegate.jnisiyc.com
